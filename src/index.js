@@ -34,7 +34,7 @@ function expressionCalculator(expr) {
 
             while (true) {
                 if (expr[i] === ')' && stack.length === 0) {
-                    return "ExpressionError: Brackets must be paired"
+                    throw "ExpressionError: Brackets must be paired"
                 }
                 else if (stack.length === 0
                     || firstPriority.includes(expr[i]) && secondPriority.includes(stack[stack.length - 1])
@@ -60,7 +60,7 @@ function expressionCalculator(expr) {
     }
 
     for (let j = stack.length; j > 0; j--) {
-        if (stack[j - 1] === '(') { return "ExpressionError: Brackets must be paired" }
+        if (stack[j - 1] === '(') { throw "ExpressionError: Brackets must be paired" }
         arrayRPN.push(stack[j - 1])
     }
 
@@ -78,7 +78,7 @@ function expressionCalculator(expr) {
             if (typeof resultNumber === "number") {
                 resultArray.push(resultNumber);
             } else {
-                return resultNumber
+                throw resultNumber
             }
         }
         else {
